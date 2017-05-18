@@ -62,7 +62,7 @@
                 Grid.Column="1"
                 Width="{Binding ActualWidth, ElementName=k1}"
                 BorderThickness="2"
-                Text=""
+                Text="http://demotywatory.pl/"
                 HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.IsSharedSizeScope="True"
             />
             <TextBox
@@ -70,8 +70,8 @@
                 Grid.Column="1"
                 Width="{Binding ActualWidth, ElementName=k1}"
                 BorderThickness="2"
-                Text=""
-                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                Text="zabawne"
+                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,3"
             />
         </Grid>
 
@@ -107,11 +107,10 @@
             />
             <TextBox 
                 Grid.Row="1"
-                Grid.Column="1"
                 Width="{Binding ActualWidth, ElementName=k2}"
                 BorderThickness="2"
                 Text=""
-                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.IsSharedSizeScope="True"
+                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.IsSharedSizeScope="True" Grid.ColumnSpan="2" Margin="39,5,7,1" TextChanged="TextBox_TextChanged"
             />
         </Grid>
         <Button
@@ -120,7 +119,7 @@
             VerticalAlignment="Center"
             Width="100"
             Height="30"
-            Content="Wykonaj">
+            Content="Wykonaj" Click="Button_Click">
 
         </Button>
     </Grid>
