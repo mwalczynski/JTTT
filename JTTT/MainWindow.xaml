@@ -7,7 +7,121 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="198,167,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label  
+            Grid.Row="0"
+            Content="Jeżeli"
+            FontSize="22"
+            HorizontalAlignment="Center"
+            />
+        <Label 
+            Grid.Row="1"
+            Content="to:"
+            FontSize="22"
+            HorizontalAlignment="Left"
+        />
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" Name="k1"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <Label  
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Content="na danej stronie znajduje się obrazek, który zawiera tekst"
+                HorizontalAlignment="Left"
+            />
+            <Label 
+                Grid.Row="1"
+                Grid.Column="0"
+                Content="URL:"
+                HorizontalAlignment="Left"
+            />
+            <Label 
+                Grid.Row="2"
+                Grid.Column="0"
+                Content="Tekst:"
+                HorizontalAlignment="Left"
+            />
+            <TextBox 
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="{Binding ActualWidth, ElementName=k1}"
+                BorderThickness="2"
+                Text=""
+                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.IsSharedSizeScope="True"
+            />
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="{Binding ActualWidth, ElementName=k1}"
+                BorderThickness="2"
+                Text=""
+                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center"
+            />
+        </Grid>
+
+        <Label 
+            Grid.Row="3"
+            Content="to wykonaj to:"
+            FontSize="22"
+            HorizontalAlignment="Left"
+        />
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" Name="k2"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label  
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Content="wyślij na podany adres email wiadmość ze znalezionym obrazkiem"
+                HorizontalAlignment="Left"
+            />
+            <Label 
+                Grid.Row="1"
+                Grid.Column="0"
+                Content="e-mail:"
+                HorizontalAlignment="Left"
+            />
+            <TextBox 
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="{Binding ActualWidth, ElementName=k2}"
+                BorderThickness="2"
+                Text=""
+                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.IsSharedSizeScope="True"
+            />
+        </Grid>
+        <Button
+            Grid.Row="5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="100"
+            Height="30"
+            Content="Wykonaj">
+
+        </Button>
     </Grid>
 </Window>
