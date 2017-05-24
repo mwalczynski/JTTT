@@ -1,0 +1,67 @@
+using HtmlAgilityPack;
+using System;
+using System.Net;
+using System.Text;
+using System.Net;
+using System.Net.Mail;
+
+
+
+namespace ConsoleApp1
+{
+    public class HtmlSample
+    {
+        private readonly string _url;
+
+        public HtmlSample(string url)
+        {
+            this._url = url;
+        }
+        public string GetPageHtml()
+        {
+            using (var wc = new WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                var html = System.Net.WebUtility.HtmlDecode(wc.DownloadString(_url));
+
+                return html;
+            }
+        }
+        public void Send(String body, String email)
+        {
+            var fromAddress = new MailAddress("spambotT1000@gmail.com", "bot");
+            var toAddress = new MailAddress(email, "Master");
+            const string fromPassword = "jtttT1000";
+            const string subject = "Subject";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
+        }
+        public void SearchNodes(String slowo, String email)
+        {
+            var doc = new HtmlDocument();
+            var pageHtml = GetPageHtml();
+            doc.LoadHtml(pageHtml);
+            var nodes = doc.DocumentNode.Descendants("img");
+            foreach (var node in nodes)
+            {
+                if (node.GetAttributeValue("alt", "").ToLower().Contains(slowo.ToLower())) { Send(node.GetAttributeValue("src", ""),email); }
+            }
+        }
+    }
+}
