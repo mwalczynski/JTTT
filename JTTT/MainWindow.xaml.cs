@@ -24,10 +24,5 @@ namespace JTTT
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("aaaa");
-        }
     }
 }

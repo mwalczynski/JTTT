@@ -3,124 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:JTTT"
+        xmlns:views="clr-namespace:JTTT.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Label  
-            Grid.Row="0"
-            Content="Jeżeli"
-            FontSize="22"
-            HorizontalAlignment="Center"
-            />
-        <Label 
-            Grid.Row="1"
-            Content="to:"
-            FontSize="22"
-            HorizontalAlignment="Left"
-        />
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto" Name="k1"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        Title="JTTT" 
+        Height="450" 
+        Width="600">
 
-            <Label  
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Content="na danej stronie znajduje się obrazek, który zawiera tekst"
-                HorizontalAlignment="Left"
-            />
-            <Label 
-                Grid.Row="1"
-                Grid.Column="0"
-                Content="URL:"
-                HorizontalAlignment="Left"
-            />
-            <Label 
-                Grid.Row="2"
-                Grid.Column="0"
-                Content="Tekst:"
-                HorizontalAlignment="Left"
-            />
-            <TextBox 
-                Grid.Row="1"
-                Grid.Column="1"
-                Width="{Binding ActualWidth, ElementName=k1}"
-                BorderThickness="2"
-                Text="http://demotywatory.pl/"
-                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.IsSharedSizeScope="True"
-            />
-            <TextBox
-                Grid.Row="2"
-                Grid.Column="1"
-                Width="{Binding ActualWidth, ElementName=k1}"
-                BorderThickness="2"
-                Text="zabawne"
-                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,3"
-            />
-        </Grid>
+    <views:MainView/>
 
-        <Label 
-            Grid.Row="3"
-            Content="to wykonaj to:"
-            FontSize="22"
-            HorizontalAlignment="Left"
-        />
-
-        <Grid Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto" Name="k2"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Label  
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Content="wyślij na podany adres email wiadmość ze znalezionym obrazkiem"
-                HorizontalAlignment="Left"
-            />
-            <Label 
-                Grid.Row="1"
-                Grid.Column="0"
-                Content="e-mail:"
-                HorizontalAlignment="Left"
-            />
-            <TextBox 
-                Grid.Row="1"
-                Width="{Binding ActualWidth, ElementName=k2}"
-                BorderThickness="2"
-                Text=""
-                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.IsSharedSizeScope="True" Grid.ColumnSpan="2" Margin="39,5,7,1" TextChanged="TextBox_TextChanged"
-            />
-        </Grid>
-        <Button
-            Grid.Row="5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Width="100"
-            Height="30"
-            Content="Wykonaj" Click="Button_Click">
-
-        </Button>
-    </Grid>
 </Window>
