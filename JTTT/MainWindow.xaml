@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="JTTT" 
         Height="450" 
-        Width="600">
+        Width="500">
 
     <views:MainView/>
 

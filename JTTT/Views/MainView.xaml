@@ -9,7 +9,7 @@
     <UserControl.DataContext>
         <viewModels:MailSenderViewModel/>
     </UserControl.DataContext>
-    
+
     <UserControl.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="3.5" />
@@ -19,21 +19,42 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
 
-        <Style TargetType="{x:Type Label}">
+        <Style x:Key="TextLabel"  TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="1" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="BoxLabel"  TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="5" />
+            <Setter Property="Width" Value="45" />
             <Setter Property="HorizontalContentAlignment" Value="Right" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
 
         <Style TargetType="{x:Type TextBox}">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="MinWidth" Value="90" />
-            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="Margin" Value="1" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
+
+        <Style TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="Margin" Value="5" />
+        </Style>
     </UserControl.Resources>
-  
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -55,87 +76,83 @@
             FontSize="22"
             HorizontalAlignment="Left"
         />
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <Border Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="92*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <Label  
+                <Label Style="{StaticResource TextLabel}"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Content="na danej stronie znajduje się obrazek, który zawiera tekst"
-                HorizontalAlignment="Left"
             />
-            <Label 
+                <Label Style="{StaticResource BoxLabel}"
                 Grid.Row="1"
                 Grid.Column="0"
                 Content="URL:"
             />
-            <Label 
+                <Label Style="{StaticResource BoxLabel}"
                 Grid.Row="2"
                 Grid.Column="0"
                 Content="Tekst:"
             />
-            <TextBox 
+                <TextBox 
                 Grid.Row="1"
                 Grid.Column="1"
-                BorderThickness="2"
                 Text="{Binding Path=Url, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" 
-                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.IsSharedSizeScope="True"
             />
-            <TextBox
+                <TextBox
                 Grid.Row="2"
                 Grid.Column="1"
-                BorderThickness="2"
                 Text="{Binding Path=Text, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" 
-                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,3"
             />
-        </Grid>
-
+            </Grid>
+        </Border>
         <Label 
             Grid.Row="3"
             Content="to wykonaj to:"
             FontSize="22"
             HorizontalAlignment="Left"
         />
+        <Border Grid.Row="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <Grid Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Label  
+                <Label Style="{StaticResource TextLabel}"
                 Grid.Row="0"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
+                Grid.ColumnSpan="3"
                 Content="wyślij na podany adres email wiadmość ze znalezionym obrazkiem"
-                HorizontalAlignment="Left"
             />
-            <Label 
+                <Label Style="{StaticResource BoxLabel}"
                 Grid.Row="1"
                 Grid.Column="0"
-                Content="e-mail:"
+                Content="E-mail:"
             />
-            <TextBox 
+                <TextBox 
                 Grid.Row="1"
                 Grid.Column="1"
-                BorderThickness="2"
-                Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" 
-                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.IsSharedSizeScope="True" Margin="39,5,7,1"
+                Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}"
             />
-        </Grid>
+            </Grid>
+        </Border>
         <Button
             Grid.Row="5"
             Content="Wykonaj"
