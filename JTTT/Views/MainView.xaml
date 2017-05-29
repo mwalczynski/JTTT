@@ -7,7 +7,7 @@
              mc:Ignorable="d" >
 
     <UserControl.DataContext>
-        <viewModels:MailSenderViewModel/>
+        <viewModels:MainViewModel/>
     </UserControl.DataContext>
 
     <UserControl.Resources>
@@ -57,6 +57,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -158,5 +159,9 @@
             Content="Wykonaj"
             Command="{Binding SendCommand}">
         </Button>
+        <Label Style="{StaticResource TextLabel}"
+            Grid.Row="6"
+            Content="{Binding Path=Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" >
+        </Label>
     </Grid>
 </UserControl>

@@ -1,59 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace JTTT
 {
     public static class MailSender
     {
-        private static readonly MailAddress FromAddress;
-        private static readonly string Password;
-        private static readonly string Subject;
-        private static readonly SmtpClient SmtpClient;
-
-
-
-        static MailSender()
+        private static void SendMail(string subject, string body, string email)
         {
-            FromAddress = new MailAddress("spambotT1000@gmail.com", "bot");
-            Password = "jtttT1000";
-            Subject = "Subject";
-            SmtpClient = new SmtpClient
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("JTTTSpam", "jttt.net@wp.pl"));
+            message.To.Add(new MailboxAddress(email));
+            message.Subject = subject;
+            message.Body = new TextPart("html")
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(FromAddress.Address, Password)
+                Text = body
             };
-        }
 
-        private static void SendMail(string body, string email)
-        {
-            var toAddress = new MailAddress(email, "Master");
-
-            using (var message = new MailMessage(FromAddress, toAddress)
+            using (var client = new SmtpClient())
             {
-                Subject = Subject,
-                Body = body
-            })
-            {
-                SmtpClient.Send(message);
+                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+                client.Connect("smtp.wp.pl", 465, true);
+                client.AuthenticationMechanisms.Remove("XOAUTH2");
+                client.Authenticate("jttt.net", "jttt.NET");
+                client.Send(message);
+                client.Disconnect(true);
             }
         }
 
         public static void SendAllNodes(IEnumerable<HtmlNode> nodes, string email)
         {
-            var src = nodes.Select(n => n.GetAttributeValue("src", "")).ToArray();
-            var message = String.Join("\n", src);
+            var src = nodes.Select(n => n.GetAttributeValue("src", "")).ToList();
 
-            SendMail(message, email);      
+            var body = "";
+            foreach (var node in src)
+            {
+                body += "<img src=\"" + node + "\" /><br />";
+            }
+
+            var subject = "JTTT - znalezione obrazki";
+
+            SendMail(subject, body, email);
         }
     }
 }

@@ -5,7 +5,7 @@ using JTTT.Annotations;
 
 namespace JTTT.ViewModels
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged, IDataErrorInfo
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -15,13 +15,5 @@ namespace JTTT.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public string this[string columnName] => Validate();
-
-        protected virtual string Validate()
-        {
-            return String.Empty;
-        }
-
-        public string Error { get; }
     }
 }

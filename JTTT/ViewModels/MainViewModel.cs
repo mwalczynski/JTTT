@@ -4,11 +4,12 @@ using GalaSoft.MvvmLight.CommandWpf;
 
 namespace JTTT.ViewModels
 {
-    public class MailSenderViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
         private string url;
         private string text;
         private string email;
+        private string message;
 
         public string Url
         {
@@ -16,7 +17,7 @@ namespace JTTT.ViewModels
             set
             {
                 url = value;
-                OnPropertyChanged(nameof(url));
+                OnPropertyChanged(nameof(Url));
             }
         }
 
@@ -26,7 +27,7 @@ namespace JTTT.ViewModels
             set
             {
                 text = value;
-                OnPropertyChanged(nameof(text));
+                OnPropertyChanged(nameof(Text));
             }
         }
 
@@ -36,21 +37,35 @@ namespace JTTT.ViewModels
             set
             {
                 email = value;
-                OnPropertyChanged(nameof(email));
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        public string Message
+        {
+            get => message;
+            set
+            {
+                message = value;
+                OnPropertyChanged(nameof(Message));
             }
         }
 
         public ICommand SendCommand { get; }
 
-        public MailSenderViewModel()
+        public MainViewModel()
         {
-            SendCommand = new RelayCommand(Send, CanSend); 
+            SendCommand = new RelayCommand(Send, CanSend);
+            Message = "Wprowadź dane";
         }
 
         private void Send()
         {
-            var foundImages = HtmlSample.SearchNodes(text, url);
+            Message = "Szukam obrazków";
+            var foundImages = HtmlSearcher.SearchNodes(text, url);
+            Message = "Wysyłam obrazki";
             MailSender.SendAllNodes(foundImages, email);
+            Message = "Wysłano";
         }
 
         private bool CanSend()

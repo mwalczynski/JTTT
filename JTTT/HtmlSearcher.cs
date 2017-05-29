@@ -10,7 +10,7 @@ using System.Net.Mail;
 
 namespace JTTT
 {
-    public class HtmlSample
+    public class HtmlSearcher
     {
         private static string GetPageHtml(string url)
         {
