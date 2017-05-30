@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Documents;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using JTTT.ViewModels.IfThisViewModels;
@@ -41,7 +43,6 @@ namespace JTTT.ViewModels
                 OnPropertyChanged(nameof(CurrentTask));
             }
         }
-
 
         public ICommand ActCommand { get; }
         public ICommand CleanCommand { get; }
@@ -129,12 +130,13 @@ namespace JTTT.ViewModels
 
         private void DeSerialize()
         {
-            throw new NotImplementedException();
+            Tasks = Serializer.ReadFromJsonFile<ObservableCollection<TaskViewModel>>();
+            ActualizeTasksIds();
         }
-
+        
         private void Serialize()
         {
-            throw new NotImplementedException();
+            Serializer.WriteToJsonFile(Tasks);
         }
 
         private void AddTask()

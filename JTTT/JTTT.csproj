@@ -58,6 +58,9 @@
     <Reference Include="MimeKit, Version=1.16.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.1.16.1\lib\net451\MimeKit.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -90,6 +93,7 @@
     <Compile Include="HtmlSearcher.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="ViewModels\BaseViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModels\IfThisThenThatBaseViewModel.cs" />
     <Compile Include="ViewModels\IfThisViewModels\IfThisViewModel.cs" />
