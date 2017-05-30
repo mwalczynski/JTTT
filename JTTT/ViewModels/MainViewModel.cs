@@ -37,14 +37,7 @@ namespace JTTT.ViewModels
                 if (currentTask == value)
                     return;
 
-                if (currentTask != null)
-                    currentTask.IsCurrentTask = false;
-
                 currentTask = value;
-
-                if (currentTask != null)
-                    currentTask.IsCurrentTask = true;
-
                 OnPropertyChanged(nameof(CurrentTask));
             }
         }
@@ -78,7 +71,6 @@ namespace JTTT.ViewModels
                 {
                     Id = 1,
                     Title = "Test 1",
-                    IsCurrentTask = false,
                     IfThisPage = new IsImageViewModel()
                     {
                         Url = "http://demotywatory.pl/",
@@ -93,7 +85,6 @@ namespace JTTT.ViewModels
                 {
                     Id = 2,
                     Title = "Test 2",
-                    IsCurrentTask = false,
                     IfThisPage = new IsImageViewModel()
                     {
                         Url = "http://demotywatory.pl/",
@@ -127,8 +118,8 @@ namespace JTTT.ViewModels
 
         private void Clean()
         {
-            TaskViewModel.ResetId();
             Tasks.Clear();
+            TaskViewModel.ResetId();
         }
 
         private bool CanClean()
@@ -148,14 +139,14 @@ namespace JTTT.ViewModels
 
         private void AddTask()
         {
-            CurrentTask.SetId();
+            CurrentTask.Id = Tasks.Count + 1;
             Tasks.Add(CurrentTask);
             CurrentTask = new TaskViewModel();
         }
 
         private bool CanAddTask()
         {
-            return CurrentTask.IsValid();
+            return CurrentTask.IsValid() && !IsCurrentTaskListed();
         }
 
         private void NewTask()
@@ -166,7 +157,16 @@ namespace JTTT.ViewModels
         private void RemoveTask()
         {
             Tasks.Remove(CurrentTask);
+            ActualizeTasksIds();
             CurrentTask = new TaskViewModel();
+        }
+
+        private void ActualizeTasksIds()
+        {
+            for (int i = 0; i < Tasks.Count; i++)
+            {
+                Tasks[i].Id = i + 1;
+            }
         }
 
         private bool IsCurrentTaskListed()

@@ -14,12 +14,9 @@ namespace JTTT.ViewModels
     {
         private static int currentId = 3;
         private int id;
-        private string title;       
+        private string title;
         private IfThisViewModel ifThisPage;
         private ThenThatViewModel thenThatPage;
-
-        public bool IsCurrentTask;
-
 
         public bool IsNew => Id == 0;
 
@@ -72,11 +69,6 @@ namespace JTTT.ViewModels
         public bool IsValid()
         {
             return IfThisPage.IsValid() && ThenThatPage.IsValid() && !string.IsNullOrWhiteSpace(Title);
-        }
-
-        public void SetId()
-        {
-            Id = currentId++;
         }
 
         public static void ResetId()
