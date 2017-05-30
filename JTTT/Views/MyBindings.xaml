@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:JTTT.Views"
+                    xmlns:ifThisViewModels="clr-namespace:JTTT.ViewModels.IfThisViewModels" 
+                    xmlns:ifThisViews="clr-namespace:JTTT.Views.IfThisViews" 
+                    xmlns:thenThatViewModels="clr-namespace:JTTT.ViewModels.ThenThatViewModels" 
+                    xmlns:thenThatViews="clr-namespace:JTTT.Views.ThenThatViews" >
+
+    <DataTemplate DataType="{x:Type ifThisViewModels:IsImageViewModel}">
+        <ifThisViews:IsImageView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type thenThatViewModels:SendMailViewModel}">
+        <thenThatViews:SendMailView />
+    </DataTemplate>
+
+</ResourceDictionary>

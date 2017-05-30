@@ -86,15 +86,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dtos\IsImageDto.cs" />
     <Compile Include="HtmlSearcher.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\IfThisThenThatBaseViewModel.cs" />
     <Compile Include="ViewModels\IfThisViewModels\IfThisViewModel.cs" />
+    <Compile Include="ViewModels\IfThisViewModels\IsImageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ThenThatViewModels\SendMailViewModel.cs" />
     <Compile Include="ViewModels\ThenThatViewModels\ThenThatViewModel.cs" />
+    <Compile Include="Views\IfThisViews\IsImageView.xaml.cs">
+      <DependentUpon>IsImageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThenThatViews\SendMailView.xaml.cs">
+      <DependentUpon>SendMailView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -108,7 +118,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\IfThisViews\IsImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyBindings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThenThatViews\SendMailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

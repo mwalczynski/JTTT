@@ -1,43 +1,46 @@
 ﻿using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using JTTT.ViewModels.IfThisViewModels;
+using JTTT.ViewModels.ThenThatViewModels;
 
 namespace JTTT.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private string url;
-        private string text;
-        private string email;
+        private IfThisViewModel ifThisPage;
+        private ThenThatViewModel thenThatPage;
         private string message;
 
-        public string Url
+        public IfThisViewModel IfThisPage
         {
-            get => url;
+            get
+            {
+                if (ifThisPage == null)
+                    ifThisPage = new IsImageViewModel();
+
+                return ifThisPage;
+            }
             set
             {
-                url = value;
-                OnPropertyChanged(nameof(Url));
+                ifThisPage = value;
+                OnPropertyChanged(nameof(IfThisPage));
             }
         }
 
-        public string Text
+        public ThenThatViewModel ThenThatPage
         {
-            get => text;
-            set
+            get
             {
-                text = value;
-                OnPropertyChanged(nameof(Text));
-            }
-        }
+                if (thenThatPage == null)
+                    thenThatPage = new SendMailViewModel();
 
-        public string Email
-        {
-            get => email;
+                return thenThatPage;
+            }
             set
             {
-                email = value;
-                OnPropertyChanged(nameof(Email));
+                thenThatPage = value;
+                OnPropertyChanged(nameof(thenThatPage));
             }
         }
 
@@ -51,26 +54,24 @@ namespace JTTT.ViewModels
             }
         }
 
-        public ICommand SendCommand { get; }
+        public ICommand ActCommand { get; }
 
         public MainViewModel()
         {
-            SendCommand = new RelayCommand(Send, CanSend);
+            ActCommand = new RelayCommand(Act, CanAct);
             Message = "Wprowadź dane";
         }
 
-        private void Send()
+        private void Act()
         {
-            Message = "Szukam obrazków";
-            var foundImages = HtmlSearcher.SearchNodes(text, url);
-            Message = "Wysyłam obrazki";
-            MailSender.SendAllNodes(foundImages, email);
-            Message = "Wysłano";
+            var data = ifThisPage.GetData();
+            thenThatPage.Act(data);
+            Message = "Wykonano zadanie";
         }
 
-        private bool CanSend()
+        private bool CanAct()
         {
-            return !string.IsNullOrWhiteSpace(url) && !string.IsNullOrWhiteSpace(text) && !string.IsNullOrWhiteSpace(email);
+            return ifThisPage.IsValid() && thenThatPage.IsValid();
         }
     }
 }

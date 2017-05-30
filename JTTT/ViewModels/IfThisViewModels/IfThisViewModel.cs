@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JTTT.Dtos;
 
 namespace JTTT.ViewModels.IfThisViewModels
 {
-    class IfThisViewModel : BaseViewModel
+    public abstract class IfThisViewModel : IfThisThenThatBaseViewModel
     {
+        public abstract IsImageDto GetData();
     }
 }
