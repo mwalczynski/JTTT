@@ -6,9 +6,12 @@
         xmlns:views="clr-namespace:JTTT.Views"
         mc:Ignorable="d"
         Title="JTTT" 
-        Height="470" 
-        Width="500">
-
-    <views:MainView/>
+        Height="515"
+        Width="865">
+    
+    <Grid
+        Background="LightGray">
+        <views:MainView/>
+    </Grid>
 
 </Window>

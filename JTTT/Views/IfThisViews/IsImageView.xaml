@@ -13,7 +13,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="92*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -26,7 +26,8 @@
                Grid.Row="0"
                Grid.Column="0"
                Grid.ColumnSpan="2"
-               Content="na danej stronie znajduje się obrazek, który zawiera tekst"
+               Content="na danej stronie znajduje się obrazek, który zawiera tekst:"
+               Foreground="DarkGreen"
         />
         <Label Style="{StaticResource BoxLabel}"
                Grid.Row="1"

@@ -4,7 +4,9 @@
                     xmlns:ifThisViewModels="clr-namespace:JTTT.ViewModels.IfThisViewModels" 
                     xmlns:ifThisViews="clr-namespace:JTTT.Views.IfThisViews" 
                     xmlns:thenThatViewModels="clr-namespace:JTTT.ViewModels.ThenThatViewModels" 
-                    xmlns:thenThatViews="clr-namespace:JTTT.Views.ThenThatViews" >
+                    xmlns:thenThatViews="clr-namespace:JTTT.Views.ThenThatViews" 
+                    xmlns:viewModels="clr-namespace:JTTT.ViewModels" 
+                    xmlns:views="clr-namespace:JTTT.Views" >
 
     <DataTemplate DataType="{x:Type ifThisViewModels:IsImageViewModel}">
         <ifThisViews:IsImageView />
@@ -12,6 +14,10 @@
 
     <DataTemplate DataType="{x:Type thenThatViewModels:SendMailViewModel}">
         <thenThatViews:SendMailView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:TaskViewModel}">
+        <views:TaskView />
     </DataTemplate>
 
 </ResourceDictionary>

@@ -90,11 +90,12 @@
     <Compile Include="HtmlSearcher.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\IfThisThenThatBaseViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModels\IfThisThenThatBaseViewModel.cs" />
     <Compile Include="ViewModels\IfThisViewModels\IfThisViewModel.cs" />
     <Compile Include="ViewModels\IfThisViewModels\IsImageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\ThenThatViewModels\SendMailViewModel.cs" />
     <Compile Include="ViewModels\ThenThatViewModels\ThenThatViewModel.cs" />
     <Compile Include="Views\IfThisViews\IsImageView.xaml.cs">
@@ -102,6 +103,9 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskView.xaml.cs">
+      <DependentUpon>TaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ThenThatViews\SendMailView.xaml.cs">
       <DependentUpon>SendMailView.xaml</DependentUpon>
@@ -123,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -29,7 +29,10 @@ namespace JTTT.ViewModels.ThenThatViewModels
         public override void Act(IsImageDto imageDto)
         {
             var foundImages = HtmlSearcher.SearchNodes(imageDto.Text, imageDto.Url);
-            MailSender.SendAllNodes(foundImages, email);
+            if (foundImages.Any())
+            {
+                MailSender.SendAllNodes(foundImages, email);
+            }
         }
     }
 }
