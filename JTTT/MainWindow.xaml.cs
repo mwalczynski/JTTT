@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace JTTT
 {
     /// <summary>
@@ -20,9 +20,12 @@ namespace JTTT
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);  
         public MainWindow()
         {
+            log.Info("Creating application window");
             InitializeComponent();
+            log.Info("Created application window");
         }
     }
 }
