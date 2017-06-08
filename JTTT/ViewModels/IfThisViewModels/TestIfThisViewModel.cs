@@ -9,9 +9,6 @@ namespace JTTT.ViewModels.IfThisViewModels
 {
     class TestIfThisViewModel : IfThisViewModel
     {
-        public override Type TypeOfDto { get; } = typeof(TestDto);
-        public override Type TypeOfCondition { get; } = typeof(TestIfThisViewModel);
-
         private string testValue;
 
         public string TestValue
@@ -29,14 +26,9 @@ namespace JTTT.ViewModels.IfThisViewModels
             return !string.IsNullOrWhiteSpace(TestValue);
         }
 
-        public override IDto GetData()
+        public override string GetData()
         {
-            var testDto = new TestDto()
-            {
-                TestValue = TestValue
-            };
-
-            return testDto;
+            return TestValue;
         }
     }
 }

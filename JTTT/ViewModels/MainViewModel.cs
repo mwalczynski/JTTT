@@ -126,45 +126,52 @@ namespace JTTT.ViewModels
         {
             return Tasks.Any();
         }
-
+        
         private void DeSerialize()
         {
             Tasks.Clear();
-            var deserializedTasks = Serializer.ReadFromJsonFile<ObservableCollection<TaskViewModel>>();
-
+            var deserializedTasks = Serializer.ReadFromJsonFile<List<TaskViewModel>>();
             foreach (var deserializedTask in deserializedTasks)
             {
-                IfThisViewModel ifThis;
-                ThenThatViewModel thenThat;
-
-                var typeOfContidion = deserializedTask.IfThisPage.TypeOfCondition;          
-                if (typeOfContidion == typeof(IsImageViewModel))
-                {
-                    ifThis = deserializedTask.IfThisPage as IsImageViewModel;
-                }
-
-                else //if (typeOfContidion == typeof(TestIfThisViewModel))
-                {
-                    ifThis = deserializedTask.IfThisPage as TestIfThisViewModel;
-                }
-
-                var typeOfAction = deserializedTask.ThenThatPage.TypeOfAction;
-                if (typeOfAction == typeof(SendMailViewModel))
-                {
-                    thenThat = deserializedTask.ThenThatPage as SendMailViewModel;
-                }
-                else //if (typeOfAction == typeof(TestThenThatViewModel))
-                {
-                    thenThat = deserializedTask.ThenThatPage as TestThenThatViewModel;
-                }
-
-                var task = new TaskViewModel(ifThis, thenThat) {Title = deserializedTask.Title};
+                var task = new TaskViewModel(deserializedTask.IfThisPage, deserializedTask.ThenThatPage); 
                 Tasks.Add(task);
             }
 
+
+            //            var deserializedTasks = Serializer.ReadFromJsonFile<List<TaskViewModel>>();
+
+            //            foreach (var deserializedTask in deserializedTasks)
+            //            {
+            //                IfThisViewModel ifThis;
+            //                ThenThatViewModel thenThat;
+            //
+            //                var typeOfContidion = deserializedTask.IfThisPage.TypeOfCondition;          
+            //                if (typeOfContidion == typeof(IsImageViewModel))
+            //                {
+            //                    ifThis = deserializedTask.IfThisPage as IsImageViewModel;
+            //                }
+            //                else //if (typeOfContidion == typeof(TestIfThisViewModel))
+            //                {
+            //                    ifThis = deserializedTask.IfThisPage as TestIfThisViewModel;
+            //                }
+            //
+            //                var typeOfAction = deserializedTask.ThenThatPage.TypeOfAction;
+            //                if (typeOfAction == typeof(SendMailViewModel))
+            //                {
+            //                    thenThat = deserializedTask.ThenThatPage as SendMailViewModel;
+            //                }
+            //                else //if (typeOfAction == typeof(TestThenThatViewModel))
+            //                {
+            //                    thenThat = deserializedTask.ThenThatPage as TestThenThatViewModel;
+            //                }
+            //
+            //                var task = new TaskViewModel(ifThis, thenThat) {Title = deserializedTask.Title};
+            //                Tasks.Add(task);
+            //            }
+
             ActualizeTasksIds();
         }
-        
+
         private void Serialize()
         {
             Serializer.WriteToJsonFile(Tasks);

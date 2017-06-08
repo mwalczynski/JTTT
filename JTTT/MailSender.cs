@@ -11,13 +11,13 @@ namespace JTTT
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private static void SendMail(string subject, string body, string email)
+        public static void SendMail(string body, string email)
         {
             log.Info("creating new message");
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("JTTTSpam", "jttt.net@wp.pl"));
             message.To.Add(new MailboxAddress(email));
-            message.Subject = subject;
+            message.Subject = "JTTT 2017"; ;
             message.Body = new TextPart("html")
             {
                 Text = body
@@ -34,22 +34,6 @@ namespace JTTT
                 client.Send(message);
                 client.Disconnect(true);
             }
-        }
-
-        public static void SendAllNodes(IEnumerable<HtmlNode> nodes, string email)
-        {
-            log.Info("creating message body out of nodes");
-            var src = nodes.Select(n => n.GetAttributeValue("src", "")).ToList();
-
-            var body = "";
-            foreach (var node in src)
-            {
-                body += "<img src=\"" + node + "\" /><br />";
-            }
-
-            var subject = "JTTT - znalezione obrazki";
-
-            SendMail(subject, body, email);
         }
     }
 }

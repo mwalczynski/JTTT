@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 using JTTT.Dtos;
 
 namespace JTTT.ViewModels.IfThisViewModels
 {
     public class IsImageViewModel : IfThisViewModel
     {
-        public override Type TypeOfDto { get; } = typeof(IsImageDto);
-        public override Type TypeOfCondition { get; } = typeof(IsImageViewModel);
-
         private string url;
         private string text;
 
@@ -40,15 +38,22 @@ namespace JTTT.ViewModels.IfThisViewModels
             return !string.IsNullOrWhiteSpace(url) && !string.IsNullOrWhiteSpace(text);
         }
 
-        public override IDto GetData()
+        public override string GetData()
         {
-            var imageDto = new IsImageDto
-            {
-                Text = text,
-                Url = url
-            };
+            var nodes = HtmlSearcher.SearchNodes(text, url);
+            return FindAllNodes(nodes);
+        }
 
-            return imageDto;
+        public string FindAllNodes(IEnumerable<HtmlNode> nodes)
+        {
+            var src = nodes.Select(n => n.GetAttributeValue("src", "")).ToList();
+
+            var body = "";
+            foreach (var node in src)
+            {
+                body += "<img src=\"" + node + "\" /><br />";
+            }
+            return body;
         }
     }
 }

@@ -9,8 +9,6 @@ namespace JTTT.ViewModels.ThenThatViewModels
 {
     public class TestThenThatViewModel : ThenThatViewModel
     {
-        public override Type TypeOfAction { get; } = typeof(TestThenThatViewModel);
-
         private string testValue;
 
         public string TestValue
@@ -28,9 +26,9 @@ namespace JTTT.ViewModels.ThenThatViewModels
             return true;
         }
 
-        public override void Act(TestDto testDto)
+        public override void Act(string testDto)
         {
-            TestValue = $"Pole po zmianie: {testDto.TestValue}";
+            TestValue = $"Pole po zmianie: {testDto}";
         }
     }
 }

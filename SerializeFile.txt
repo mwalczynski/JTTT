@@ -1,0 +1,1 @@
+[{"IsNew":false,"Id":1,"Title":"Test 1","IfThisPage":{"Url":"http://demotywatory.pl/","Text":"jak"},"ThenThatPage":{"Email":"dragonmw@wp.pl"}},{"IsNew":false,"Id":2,"Title":"Testowe modele","IfThisPage":{"TestValue":"Testowy warunek"},"ThenThatPage":{"TestValue":"Wartość do zmiany po wykonaniu"}}]

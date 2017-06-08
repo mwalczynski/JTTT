@@ -10,7 +10,7 @@
         <ResourceDictionary Source="/JTTT;component/Views/MyResources.xaml"/>
     </UserControl.Resources>
 
-    <Grid Width="447">
+    <Grid Width="447" Height="111">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>

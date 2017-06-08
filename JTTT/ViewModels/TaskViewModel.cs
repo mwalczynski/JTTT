@@ -19,8 +19,6 @@ namespace JTTT.ViewModels
         private string title;
         private IfThisViewModel ifThisPage;
         private ThenThatViewModel thenThatPage;
-        private IfThisViewModel ifThis;
-        private ThenThatViewModel thenThat;
 
         public bool IsNew => Id == 0;
 
@@ -66,30 +64,19 @@ namespace JTTT.ViewModels
 
         public TaskViewModel()
         {
-            IfThisPage = new IsImageViewModel();
-            ThenThatPage = new SendMailViewModel();
+
         }
 
         public TaskViewModel(IfThisViewModel ifThis, ThenThatViewModel thenThat)
         {
-            this.ifThis = ifThis;
-            this.thenThat = thenThat;
+            this.ifThisPage = ifThis;
+            this.thenThatPage = thenThat;
         }
 
         public void Act()
         {
-            var dtoType = IfThisPage.TypeOfDto;
-
-            if (dtoType == typeof(IsImageDto))
-            {
-                var data = IfThisPage.GetData() as IsImageDto;
-                thenThatPage.Act(data);
-            }
-            else if (dtoType == typeof(TestDto))
-            {
-                var data = IfThisPage.GetData() as TestDto;
-                thenThatPage.Act(data);
-            }
+            var data = IfThisPage.GetData();
+            thenThatPage.Act(data);
         }
 
         public bool IsValid()

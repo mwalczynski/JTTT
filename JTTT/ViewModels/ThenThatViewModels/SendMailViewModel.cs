@@ -8,9 +8,7 @@ using JTTT.Dtos;
 namespace JTTT.ViewModels.ThenThatViewModels
 {
     public class SendMailViewModel : ThenThatViewModel
-    {
-        public override Type TypeOfAction { get; } = typeof(SendMailViewModel);
-
+    { 
         private string email;
 
         public string Email
@@ -28,13 +26,9 @@ namespace JTTT.ViewModels.ThenThatViewModels
             return !string.IsNullOrWhiteSpace(email);
         }
 
-        public override void Act(IsImageDto imageDto)
+        public override void Act(string data)
         {
-            var foundImages = HtmlSearcher.SearchNodes(imageDto.Text, imageDto.Url);
-            if (foundImages.Any())
-            {
-                MailSender.SendAllNodes(foundImages, email);
-            }
+            MailSender.SendMail(data, email);
         }
     }
 }
