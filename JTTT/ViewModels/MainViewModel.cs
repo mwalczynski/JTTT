@@ -85,15 +85,14 @@ namespace JTTT.ViewModels
                 new TaskViewModel()
                 {
                     Id = 2,
-                    Title = "Test 2",
-                    IfThisPage = new IsImageViewModel()
+                    Title = "Testowe modele",
+                    IfThisPage = new TestIfThisViewModel()
                     {
-                        Url = "http://demotywatory.pl/",
-                        Text = "najlepsze"
+                        TestValue = "Testowy warunek"
                     },
-                    ThenThatPage = new SendMailViewModel()
+                    ThenThatPage = new TestThenThatViewModel()
                     {
-                        Email = "dragonmw@wp.pl"
+                        TestValue = "Wartość do zmiany po wykonaniu"
                     }
                 }
             };
@@ -130,7 +129,39 @@ namespace JTTT.ViewModels
 
         private void DeSerialize()
         {
-            Tasks = Serializer.ReadFromJsonFile<ObservableCollection<TaskViewModel>>();
+            Tasks.Clear();
+            var deserializedTasks = Serializer.ReadFromJsonFile<ObservableCollection<TaskViewModel>>();
+
+            foreach (var deserializedTask in deserializedTasks)
+            {
+                IfThisViewModel ifThis;
+                ThenThatViewModel thenThat;
+
+                var typeOfContidion = deserializedTask.IfThisPage.TypeOfCondition;          
+                if (typeOfContidion == typeof(IsImageViewModel))
+                {
+                    ifThis = deserializedTask.IfThisPage as IsImageViewModel;
+                }
+
+                else //if (typeOfContidion == typeof(TestIfThisViewModel))
+                {
+                    ifThis = deserializedTask.IfThisPage as TestIfThisViewModel;
+                }
+
+                var typeOfAction = deserializedTask.ThenThatPage.TypeOfAction;
+                if (typeOfAction == typeof(SendMailViewModel))
+                {
+                    thenThat = deserializedTask.ThenThatPage as SendMailViewModel;
+                }
+                else //if (typeOfAction == typeof(TestThenThatViewModel))
+                {
+                    thenThat = deserializedTask.ThenThatPage as TestThenThatViewModel;
+                }
+
+                var task = new TaskViewModel(ifThis, thenThat) {Title = deserializedTask.Title};
+                Tasks.Add(task);
+            }
+
             ActualizeTasksIds();
         }
         

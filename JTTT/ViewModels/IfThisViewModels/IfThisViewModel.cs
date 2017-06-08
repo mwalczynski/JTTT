@@ -9,6 +9,8 @@ namespace JTTT.ViewModels.IfThisViewModels
 {
     public abstract class IfThisViewModel : IfThisThenThatBaseViewModel
     {
-        public abstract IsImageDto GetData();
+        public abstract Type TypeOfDto { get; }
+        public abstract Type TypeOfCondition { get; }
+        public abstract IDto GetData();
     }
 }

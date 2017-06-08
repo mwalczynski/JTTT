@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using JTTT.Dtos;
 using JTTT.ViewModels.IfThisViewModels;
 using JTTT.ViewModels.ThenThatViewModels;
+using Org.BouncyCastle.Asn1.X509.Qualified;
 
 namespace JTTT.ViewModels
 {
@@ -17,6 +19,8 @@ namespace JTTT.ViewModels
         private string title;
         private IfThisViewModel ifThisPage;
         private ThenThatViewModel thenThatPage;
+        private IfThisViewModel ifThis;
+        private ThenThatViewModel thenThat;
 
         public bool IsNew => Id == 0;
 
@@ -60,10 +64,32 @@ namespace JTTT.ViewModels
             }
         }
 
+        public TaskViewModel()
+        {
+            IfThisPage = new IsImageViewModel();
+            ThenThatPage = new SendMailViewModel();
+        }
+
+        public TaskViewModel(IfThisViewModel ifThis, ThenThatViewModel thenThat)
+        {
+            this.ifThis = ifThis;
+            this.thenThat = thenThat;
+        }
+
         public void Act()
         {
-            var data = ifThisPage.GetData();
-            thenThatPage.Act(data);
+            var dtoType = IfThisPage.TypeOfDto;
+
+            if (dtoType == typeof(IsImageDto))
+            {
+                var data = IfThisPage.GetData() as IsImageDto;
+                thenThatPage.Act(data);
+            }
+            else if (dtoType == typeof(TestDto))
+            {
+                var data = IfThisPage.GetData() as TestDto;
+                thenThatPage.Act(data);
+            }
         }
 
         public bool IsValid()

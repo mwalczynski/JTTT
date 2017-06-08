@@ -9,6 +9,15 @@ namespace JTTT.ViewModels.ThenThatViewModels
 {
     public abstract class ThenThatViewModel : IfThisThenThatBaseViewModel
     {
-        public abstract void Act(IsImageDto imageDto);
+        public abstract Type TypeOfAction { get; }
+
+        public virtual void Act(IsImageDto imageDto)
+        {
+            
+        }
+        public virtual void Act(TestDto test)
+        {
+
+        }
     }
 }

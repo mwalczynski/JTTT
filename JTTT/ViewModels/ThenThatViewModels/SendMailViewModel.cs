@@ -9,6 +9,8 @@ namespace JTTT.ViewModels.ThenThatViewModels
 {
     public class SendMailViewModel : ThenThatViewModel
     {
+        public override Type TypeOfAction { get; } = typeof(SendMailViewModel);
+
         private string email;
 
         public string Email

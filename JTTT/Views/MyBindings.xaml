@@ -20,4 +20,15 @@
         <views:TaskView />
     </DataTemplate>
 
+
+
+
+    <DataTemplate DataType="{x:Type ifThisViewModels:TestIfThisViewModel}">
+        <ifThisViews:TestIfThisView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type thenThatViewModels:TestThenThatViewModel}">
+        <thenThatViews:TestThenThatView />
+    </DataTemplate>
+
 </ResourceDictionary>

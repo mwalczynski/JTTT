@@ -9,6 +9,9 @@ namespace JTTT.ViewModels.IfThisViewModels
 {
     public class IsImageViewModel : IfThisViewModel
     {
+        public override Type TypeOfDto { get; } = typeof(IsImageDto);
+        public override Type TypeOfCondition { get; } = typeof(IsImageViewModel);
+
         private string url;
         private string text;
 
@@ -37,7 +40,7 @@ namespace JTTT.ViewModels.IfThisViewModels
             return !string.IsNullOrWhiteSpace(url) && !string.IsNullOrWhiteSpace(text);
         }
 
-        public override IsImageDto GetData()
+        public override IDto GetData()
         {
             var imageDto = new IsImageDto
             {
