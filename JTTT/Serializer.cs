@@ -8,10 +8,13 @@ namespace JTTT
 {
     public static class Serializer
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public static string FilePath = "..//..//..//SerializeFile.txt";
 
         public static void WriteToJsonFile<T>(T objectToWrite) where T : new()
         {
+            log.Info("Writing to JSON file");
             TextWriter writer = null;
             try
             {
@@ -27,6 +30,7 @@ namespace JTTT
 
         public static T ReadFromJsonFile<T>() where T : new()
         {
+            log.Info("reading from JSON file");
             TextReader reader = null;
             try
             {
