@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using AutoMapper;
@@ -11,6 +12,7 @@ using JTTT.Services;
 using JTTT.ViewModels.BaseViewModels;
 using JTTT.ViewModels.IfThisViewModels;
 using JTTT.ViewModels.ThenThatViewModels;
+using MimeKit;
 
 namespace JTTT.ViewModels
 {
@@ -42,9 +44,6 @@ namespace JTTT.ViewModels
             get => currentTask ?? (currentTask = new TaskViewModel());
             set
             {
-                if (currentTask == value)
-                    return;
-
                 currentTask = value;
                 OnPropertyChanged(nameof(CurrentTask));
             }
@@ -105,14 +104,14 @@ namespace JTTT.ViewModels
         {
             return Tasks.Any();
         }
-        
+
         private void DeSerialize()
         {
             var list = Serializer.ReadFromJsonFile<List<TaskViewModel>>();
 
             foreach (var model in list)
             {
-                Tasks.Add(model);              
+                Tasks.Add(model);
             }
             ActualizeTasksIds();
         }
@@ -125,7 +124,7 @@ namespace JTTT.ViewModels
         private void AddTask()
         {
             var taskDto = Mapper.Map<TaskDto>(CurrentTask);
-            service.AddNewTask(taskDto);
+            CurrentTask.DbId = service.AddNewTask(taskDto);
 
             CurrentTask.Id = Tasks.Count + 1;
             Tasks.Add(CurrentTask);
@@ -144,8 +143,7 @@ namespace JTTT.ViewModels
 
         private void RemoveTask()
         {
-            var taskDto = Mapper.Map<TaskDto>(CurrentTask);
-            service.DeleteTask(taskDto);
+            service.DeleteTask(CurrentTask.DbId);
 
             Tasks.Remove(CurrentTask);
             ActualizeTasksIds();

@@ -44,7 +44,6 @@ namespace JTTT.Repository
             using (var context = new JtttContext())
             {
                 var entity = context.Set<T>().First(x => x.Id == id);
-                context.Set<T>().Attach(entity);
                 context.Entry<T>(entity).State = EntityState.Deleted;
                 context.SaveChanges();
             }
@@ -88,7 +87,6 @@ namespace JTTT.Repository
                 return result.Where(filter).Any();
             }
         }
-
 
         public List<T> FindAll(params Expression<Func<T, object>>[] includeItems)
         {

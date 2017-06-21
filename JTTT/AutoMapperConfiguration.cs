@@ -36,7 +36,8 @@ namespace JTTT
                     .ForMember(dest => dest.Action, opt => opt.MapFrom(src => Mapper.Map<ActionDto>(src.Action)));
                 cfg.CreateMap<TaskDto, TaskViewModel>()
                     .ForMember(dest => dest.IfThisPage, opt => opt.MapFrom(src => src.Condition.CreateViewModel()))
-                    .ForMember(dest => dest.ThenThatPage, opt => opt.MapFrom(src => src.Action.CreateViewModel()));
+                    .ForMember(dest => dest.ThenThatPage, opt => opt.MapFrom(src => src.Action.CreateViewModel()))
+                    .ForMember(dest => dest.DbId, opt => opt.MapFrom(src => src.Id));
 
                 cfg.CreateMap<TaskDto, JtttTask>()
                     .ForMember(dest => dest.Condition, opt => opt.MapFrom(src => src.Condition.CreateDao()))

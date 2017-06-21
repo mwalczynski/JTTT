@@ -40,7 +40,7 @@
                 Width="350"
                 Height="191"
                 ItemsSource="{Binding Tasks}" 
-                SelectedItem="{Binding CurrentTask}" >
+                SelectedItem="{Binding CurrentTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" >
 
                 <ListView.ItemTemplate>
                     <DataTemplate>

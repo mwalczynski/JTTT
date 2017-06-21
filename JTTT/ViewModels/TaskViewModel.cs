@@ -14,6 +14,8 @@ namespace JTTT.ViewModels
 {
     public class TaskViewModel : BaseViewModel
     {
+        public int DbId { get; set; }
+
         private int id;
         private string title;
         private IfThisViewModel ifThisPage;

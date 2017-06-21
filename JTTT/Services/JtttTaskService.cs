@@ -23,16 +23,18 @@ namespace JTTT.Services
             return viewModels;
         }
 
-        public void AddNewTask(TaskDto taskDto)
+        public int AddNewTask(TaskDto taskDto)
         {
             var taskDao = Mapper.Map<JtttTask>(taskDto);
-            repository.Add(taskDao);
+            return repository.Add(taskDao);
         }
 
-        public void DeleteTask(TaskDto taskDto)
+        public void DeleteTask(int id)
         {
-            var taskDao = Mapper.Map<JtttTask>(taskDto);
-            var id = repository.GetId(taskDao);
+            var taskToDelete = repository.FindById(id);
+            repository.Delete(taskToDelete.Id);
+            actionRepository.Delete(taskToDelete.ActionId);
+            conditionsRepository.Delete(taskToDelete.ConditionId);
         }
 
         public void DeleteAll()

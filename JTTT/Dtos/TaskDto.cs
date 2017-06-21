@@ -8,6 +8,7 @@ namespace JTTT.Dtos
 {
     public class TaskDto
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public ConditionDto Condition { get; set; }
         public ActionDto Action { get; set; }
