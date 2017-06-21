@@ -4,7 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Documents;
 using System.Windows.Input;
+using AutoMapper;
 using GalaSoft.MvvmLight.CommandWpf;
+using JTTT.Dtos;
+using JTTT.Services;
+using JTTT.ViewModels.BaseViewModels;
 using JTTT.ViewModels.IfThisViewModels;
 using JTTT.ViewModels.ThenThatViewModels;
 
@@ -12,6 +16,8 @@ namespace JTTT.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        private readonly JtttTaskService service = new JtttTaskService();
+
         private ObservableCollection<TaskViewModel> tasks;
         private TaskViewModel currentTask;
 
@@ -66,36 +72,9 @@ namespace JTTT.ViewModels
 
         private void LoadTasks()
         {
-            Tasks = new ObservableCollection<TaskViewModel>()
-            {
-                new TaskViewModel()
-                {
-                    Id = 1,
-                    Title = "Test 1",
-                    IfThisPage = new IsImageViewModel()
-                    {
-                        Url = "http://demotywatory.pl/",
-                        Text = "jak"
-                    },
-                    ThenThatPage = new SendMailViewModel()
-                    {
-                        Email = "dragonmw@wp.pl"
-                    }
-                },
-                new TaskViewModel()
-                {
-                    Id = 2,
-                    Title = "Testowe modele",
-                    IfThisPage = new TestIfThisViewModel()
-                    {
-                        TestValue = "Testowy warunek"
-                    },
-                    ThenThatPage = new TestThenThatViewModel()
-                    {
-                        TestValue = "Wartość do zmiany po wykonaniu"
-                    }
-                }
-            };
+            var tasksFromRepository = service.GetAllTasks();
+            Tasks = new ObservableCollection<TaskViewModel>(tasksFromRepository);
+            ActualizeTasksIds();
         }
 
         private void Act()
@@ -118,8 +97,8 @@ namespace JTTT.ViewModels
 
         private void Clean()
         {
+            service.DeleteAll();
             Tasks.Clear();
-            TaskViewModel.ResetId();
         }
 
         private bool CanClean()
@@ -129,46 +108,12 @@ namespace JTTT.ViewModels
         
         private void DeSerialize()
         {
-            Tasks.Clear();
-            var deserializedTasks = Serializer.ReadFromJsonFile<List<TaskViewModel>>();
-            foreach (var deserializedTask in deserializedTasks)
+            var list = Serializer.ReadFromJsonFile<List<TaskViewModel>>();
+
+            foreach (var model in list)
             {
-                var task = new TaskViewModel(deserializedTask.IfThisPage, deserializedTask.ThenThatPage); 
-                Tasks.Add(task);
+                Tasks.Add(model);              
             }
-
-
-            //            var deserializedTasks = Serializer.ReadFromJsonFile<List<TaskViewModel>>();
-
-            //            foreach (var deserializedTask in deserializedTasks)
-            //            {
-            //                IfThisViewModel ifThis;
-            //                ThenThatViewModel thenThat;
-            //
-            //                var typeOfContidion = deserializedTask.IfThisPage.TypeOfCondition;          
-            //                if (typeOfContidion == typeof(IsImageViewModel))
-            //                {
-            //                    ifThis = deserializedTask.IfThisPage as IsImageViewModel;
-            //                }
-            //                else //if (typeOfContidion == typeof(TestIfThisViewModel))
-            //                {
-            //                    ifThis = deserializedTask.IfThisPage as TestIfThisViewModel;
-            //                }
-            //
-            //                var typeOfAction = deserializedTask.ThenThatPage.TypeOfAction;
-            //                if (typeOfAction == typeof(SendMailViewModel))
-            //                {
-            //                    thenThat = deserializedTask.ThenThatPage as SendMailViewModel;
-            //                }
-            //                else //if (typeOfAction == typeof(TestThenThatViewModel))
-            //                {
-            //                    thenThat = deserializedTask.ThenThatPage as TestThenThatViewModel;
-            //                }
-            //
-            //                var task = new TaskViewModel(ifThis, thenThat) {Title = deserializedTask.Title};
-            //                Tasks.Add(task);
-            //            }
-
             ActualizeTasksIds();
         }
 
@@ -179,6 +124,9 @@ namespace JTTT.ViewModels
 
         private void AddTask()
         {
+            var taskDto = Mapper.Map<TaskDto>(CurrentTask);
+            service.AddNewTask(taskDto);
+
             CurrentTask.Id = Tasks.Count + 1;
             Tasks.Add(CurrentTask);
             CurrentTask = new TaskViewModel();
@@ -196,6 +144,9 @@ namespace JTTT.ViewModels
 
         private void RemoveTask()
         {
+            var taskDto = Mapper.Map<TaskDto>(CurrentTask);
+            service.DeleteTask(taskDto);
+
             Tasks.Remove(CurrentTask);
             ActualizeTasksIds();
             CurrentTask = new TaskViewModel();

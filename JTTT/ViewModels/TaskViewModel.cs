@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using JTTT.Dtos;
+using JTTT.ViewModels.BaseViewModels;
 using JTTT.ViewModels.IfThisViewModels;
 using JTTT.ViewModels.ThenThatViewModels;
 using Org.BouncyCastle.Asn1.X509.Qualified;
@@ -14,7 +14,6 @@ namespace JTTT.ViewModels
 {
     public class TaskViewModel : BaseViewModel
     {
-        private static int currentId = 3;
         private int id;
         private string title;
         private IfThisViewModel ifThisPage;
@@ -62,17 +61,6 @@ namespace JTTT.ViewModels
             }
         }
 
-        public TaskViewModel()
-        {
-
-        }
-
-        public TaskViewModel(IfThisViewModel ifThis, ThenThatViewModel thenThat)
-        {
-            this.ifThisPage = ifThis;
-            this.thenThatPage = thenThat;
-        }
-
         public void Act()
         {
             var data = IfThisPage.GetData();
@@ -82,11 +70,6 @@ namespace JTTT.ViewModels
         public bool IsValid()
         {
             return IfThisPage.IsValid() && ThenThatPage.IsValid() && !string.IsNullOrWhiteSpace(Title);
-        }
-
-        public static void ResetId()
-        {
-            currentId = 1;
         }
     }
 }

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JTTT.Dtos;
+using JTTT.ViewModels.BaseViewModels;
 
 namespace JTTT.ViewModels.IfThisViewModels
 {
     public abstract class IfThisViewModel : IfThisThenThatBaseViewModel
     {
-        public abstract string GetData();
+        protected abstract string Title { get; }
+        public abstract DataCI GetData();
     }
 }

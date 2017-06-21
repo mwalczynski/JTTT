@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using JTTT.Annotations;
 
-namespace JTTT.ViewModels
+namespace JTTT.ViewModels.BaseViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

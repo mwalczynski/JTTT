@@ -11,13 +11,13 @@ namespace JTTT
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public static void SendMail(string body, string email)
+        public static void SendMail(string title, string body, string email)
         {
             log.Info("creating new message");
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("JTTTSpam", "jttt.net@wp.pl"));
             message.To.Add(new MailboxAddress(email));
-            message.Subject = "JTTT 2017"; ;
+            message.Subject = "JTTT 2017: " + title; ;
             message.Body = new TextPart("html")
             {
                 Text = body

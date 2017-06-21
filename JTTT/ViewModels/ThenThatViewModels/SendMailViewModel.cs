@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JTTT.Dtos;
 
 namespace JTTT.ViewModels.ThenThatViewModels
 {
     public class SendMailViewModel : ThenThatViewModel
-    { 
+    {
         private string email;
 
         public string Email
@@ -26,9 +25,10 @@ namespace JTTT.ViewModels.ThenThatViewModels
             return !string.IsNullOrWhiteSpace(email);
         }
 
-        public override void Act(string data)
+        public override void Act(DataCI data)
         {
-            MailSender.SendMail(data, email);
+            var body = data.Images.Aggregate("", (current, image) => current + ("<img src=\"" + image + "\" /><br />"));
+            MailSender.SendMail(data.Title, body, email);
         }
     }
 }

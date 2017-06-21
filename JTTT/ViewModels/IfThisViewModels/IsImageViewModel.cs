@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
-using JTTT.Dtos;
 
 namespace JTTT.ViewModels.IfThisViewModels
 {
     public class IsImageViewModel : IfThisViewModel
     {
+        protected override string Title { get; } = "Znalezione obrazki";
+
         private string url;
         private string text;
 
@@ -38,22 +39,18 @@ namespace JTTT.ViewModels.IfThisViewModels
             return !string.IsNullOrWhiteSpace(url) && !string.IsNullOrWhiteSpace(text);
         }
 
-        public override string GetData()
+        public override DataCI GetData()
         {
             var nodes = HtmlSearcher.SearchNodes(text, url);
-            return FindAllNodes(nodes);
+            var images = FindAllNodes(nodes);
+            var data = new DataCI(Title, images);
+            return data;
         }
 
-        public string FindAllNodes(IEnumerable<HtmlNode> nodes)
+        private List<string> FindAllNodes(IEnumerable<HtmlNode> nodes)
         {
-            var src = nodes.Select(n => n.GetAttributeValue("src", "")).ToList();
-
-            var body = "";
-            foreach (var node in src)
-            {
-                body += "<img src=\"" + node + "\" /><br />";
-            }
-            return body;
+            var images = nodes.Select(n => n.GetAttributeValue("src", "")).ToList();
+            return images;
         }
     }
 }
