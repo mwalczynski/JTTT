@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using JTTT.Interfaces;
 
-namespace JTTT.Repository
+namespace JTTT.Interfaces
 {
     public interface IRepository<T> where T : class, IDBEntity
     {

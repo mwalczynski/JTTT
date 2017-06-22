@@ -24,10 +24,12 @@
         <thenThatViews:ShowOnScreenView />
     </DataTemplate>
     
-    
-
     <DataTemplate DataType="{x:Type viewModels:TaskViewModel}">
         <views:TaskView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:ShowConditionViewModel}">
+        <views:ShowConditionView />
     </DataTemplate>
 
 </ResourceDictionary>

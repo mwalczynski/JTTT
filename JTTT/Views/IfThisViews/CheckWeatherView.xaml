@@ -46,6 +46,7 @@
         <TextBox
             Grid.Row="2"
             Grid.Column="1"
+            Width="100"
             Text="{Binding Path=Temperature, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" 
         />
     </Grid>

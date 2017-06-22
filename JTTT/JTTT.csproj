@@ -161,7 +161,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Repository\JtttContext.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Serializer.cs" />
@@ -172,6 +172,7 @@
     <Compile Include="ViewModels\IfThisViewModels\IfThisViewModel.cs" />
     <Compile Include="ViewModels\IfThisViewModels\IsImageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ShowConditionViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\ThenThatViewModels\SendMailViewModel.cs" />
     <Compile Include="ViewModels\ThenThatViewModels\ShowOnScreenViewModel.cs" />
@@ -184,6 +185,9 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShowConditionView.xaml.cs">
+      <DependentUpon>ShowConditionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TaskView.xaml.cs">
       <DependentUpon>TaskView.xaml</DependentUpon>
@@ -215,6 +219,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShowConditionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

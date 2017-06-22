@@ -51,7 +51,13 @@ namespace JTTT.ViewModels
         private TaskViewModel currentTask;
         public TaskViewModel CurrentTask
         {
-            get => currentTask ?? (currentTask = new TaskViewModel());
+            get
+            {
+                if (currentTask == null)
+                    NewTask();
+
+                return currentTask;
+            }
             set
             {
                 currentTask = value;
