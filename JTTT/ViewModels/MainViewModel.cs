@@ -75,8 +75,13 @@ namespace JTTT.ViewModels
 
         private void LoadTasks()
         {
+            Tasks = new ObservableCollection<TaskViewModel>();
+
             var tasksFromRepository = service.GetAllTasks();
-            Tasks = new ObservableCollection<TaskViewModel>(tasksFromRepository);
+            foreach (var task in tasksFromRepository)
+            {
+                AddTask(task);
+            }
             ActualizeTasksIds();
         }
 
@@ -111,41 +116,39 @@ namespace JTTT.ViewModels
 
         private void DeSerialize()
         {
-            //            var list = Serializer.ReadFromJsonFile<List<TaskViewModel>>();
-            //
-            //            foreach (var model in list)
-            //            {
-            //                Tasks.Add(model);
-            //            }
-            //            ActualizeTasksIds();
+            Tasks.Clear();
+
+            var taskDtos = Serializer.ReadFromJsonFile<List<TaskDto>>();
+            
+            var taskViewModels = taskDtos.Select(task => Mapper.Map<TaskViewModel>(task)).ToList();
+            foreach (var task in taskViewModels)
+            {
+                AddTask(task);
+            }
+            Tasks = new ObservableCollection<TaskViewModel>(taskViewModels);
+
+            ActualizeTasksIds();
         }
 
         private void Serialize()
         {
-            var task = new TaskViewModel()
-            {
-                IfThisPage = new CheckWeatherViewModel()
-                {
-                    City = "Kalisz",
-                    Temperature = 10
-                },
-                ThenThatPage = new ShowOnScreenViewModel(),
-                Id = 5,
-                Title = "Ta dam"
-            };
-            Tasks.Add(task);
-            var dto = Mapper.Map<TaskDto>(task);
-            service.AddNewTask(dto);
+            var tasksDtos = Tasks.Select(task => Mapper.Map<TaskDto>(task)).ToList();
+            Serializer.WriteToJsonFile(tasksDtos);
         }
 
         private void AddTask()
         {
-            var taskDto = Mapper.Map<TaskDto>(CurrentTask);
-            CurrentTask.DbId = service.AddNewTask(taskDto);
-
-            CurrentTask.Id = Tasks.Count + 1;
-            Tasks.Add(CurrentTask);
+            AddTask(CurrentTask);
             CurrentTask = new TaskViewModel();
+        }
+
+        private void AddTask(TaskViewModel taskViewModel)
+        {
+            var taskDto = Mapper.Map<TaskDto>(taskViewModel);
+            taskViewModel.DbId = service.AddNewTask(taskDto);
+
+            taskDto.Id = Tasks.Count + 1;
+            Tasks.Add(taskViewModel);
         }
 
         private bool CanAddTask()

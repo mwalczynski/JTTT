@@ -42,27 +42,13 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
-                    BorderThickness="1"
-                    BorderBrush="DarkGray"
-                    Margin="0"
-                    Width="100"
-                    Height="20"
-                    FontWeight="Normal"
-                    Foreground="Black"
-                    FontSize="12"
+                    Style="{StaticResource TabControl}"
                     Content="Sprawdź stronę"
                     Command="{Binding SetIsImageCommand}">
             </Button>
 
             <Button Grid.Column="1"
-                    BorderThickness="1"
-                    BorderBrush="DarkGray"
-                    Margin="0"
-                    Width="100"
-                    Height="20"
-                    FontWeight="Normal"
-                    Foreground="Black"
-                    FontSize="12"
+                    Style="{StaticResource TabControl}"
                     Content="Sprawdź pogodę"
                     Command="{Binding SetCheckWeatherCommand}">
             </Button>
@@ -87,27 +73,13 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
-                    BorderThickness="1"
-                    BorderBrush="DarkGray"
-                    Margin="0"
-                    Width="100"
-                    Height="20"
-                    FontWeight="Normal"
-                    Foreground="Black"
-                    FontSize="12"
+                    Style="{StaticResource TabControl}"
                     Content="Wyślij email"
                     Command="{Binding SetSendMailCommand}">
             </Button>
 
             <Button Grid.Column="1"
-                    BorderThickness="1"
-                    BorderBrush="DarkGray"
-                    Margin="0"
-                    Width="100"
-                    Height="20"
-                    FontWeight="Normal"
-                    Foreground="Black"
-                    FontSize="12"
+                    Style="{StaticResource TabControl}"
                     Content="Pokaż komunikat"
                     Command="{Binding SetShowCommand}">
             </Button>
