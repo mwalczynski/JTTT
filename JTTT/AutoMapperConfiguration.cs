@@ -20,15 +20,29 @@ namespace JTTT
             {
                 // IfThis Mapping
                 cfg.CreateMap<IsImageViewModel, ConditionDto>();
+                cfg.CreateMap<CheckWeatherViewModel, ConditionDto>();
+
                 cfg.CreateMap<ConditionDto, IsImageViewModel>();
+                cfg.CreateMap<ConditionDto, CheckWeatherViewModel>();
+
                 cfg.CreateMap<ConditionDto, JtttConditionImgAlt>();
+                cfg.CreateMap<ConditionDto, JtttConditionWeather>();
+
                 cfg.CreateMap<JtttConditionImgAlt, ConditionDto>();
+                cfg.CreateMap<JtttConditionWeather, ConditionDto>();
 
                 // ThenThat Mapping
                 cfg.CreateMap<SendMailViewModel, ActionDto>();
+                cfg.CreateMap<ShowOnScreenViewModel, ActionDto>();
+
                 cfg.CreateMap<ActionDto, SendMailViewModel>();
+                cfg.CreateMap<ActionDto, ShowOnScreenViewModel>();
+
                 cfg.CreateMap<ActionDto, JtttActionEmail>();
+                cfg.CreateMap<ActionDto, JtttActionShow>();
+
                 cfg.CreateMap<JtttActionEmail, ActionDto>();
+                cfg.CreateMap<JtttActionShow, ActionDto>();
 
                 // Task Mapping
                 cfg.CreateMap<JtttTask, TaskDto>()

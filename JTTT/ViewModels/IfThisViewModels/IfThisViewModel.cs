@@ -9,7 +9,6 @@ namespace JTTT.ViewModels.IfThisViewModels
 {
     public abstract class IfThisViewModel : IfThisThenThatBaseViewModel
     {
-        protected abstract string Title { get; }
         public abstract DataCI GetData();
     }
 }

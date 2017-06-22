@@ -12,9 +12,19 @@
         <ifThisViews:IsImageView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type ifThisViewModels:CheckWeatherViewModel}">
+        <ifThisViews:CheckWeatherView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type thenThatViewModels:SendMailViewModel}">
         <thenThatViews:SendMailView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type thenThatViewModels:ShowOnScreenViewModel}">
+        <thenThatViews:ShowOnScreenView />
+    </DataTemplate>
+    
+    
 
     <DataTemplate DataType="{x:Type viewModels:TaskViewModel}">
         <views:TaskView />

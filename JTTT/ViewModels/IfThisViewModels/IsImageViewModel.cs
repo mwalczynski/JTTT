@@ -9,8 +9,6 @@ namespace JTTT.ViewModels.IfThisViewModels
 {
     public class IsImageViewModel : IfThisViewModel
     {
-        protected override string Title { get; } = "Znalezione obrazki";
-
         private string url;
         private string text;
 
@@ -43,7 +41,7 @@ namespace JTTT.ViewModels.IfThisViewModels
         {
             var nodes = HtmlSearcher.SearchNodes(text, url);
             var images = FindAllNodes(nodes);
-            var data = new DataCI(Title, images);
+            var data = new DataCI("Znalezione obrazki", images);
             return data;
         }
 

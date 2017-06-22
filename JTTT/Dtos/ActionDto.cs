@@ -16,11 +16,17 @@ namespace JTTT.Dtos
 
         public ThenThatViewModel CreateViewModel()
         {
+            if (string.IsNullOrEmpty(Email))
+                return Mapper.Map<ShowOnScreenViewModel>(this);
+
             return Mapper.Map<SendMailViewModel>(this);
         }
 
         public JtttAction CreateDao()
         {
+            if (string.IsNullOrEmpty(Email))
+                return Mapper.Map<JtttActionShow>(this);
+
             return Mapper.Map<JtttActionEmail>(this);
         }
     }

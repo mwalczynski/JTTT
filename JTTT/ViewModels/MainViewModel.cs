@@ -18,11 +18,20 @@ namespace JTTT.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        public MainViewModel()
+        {
+            ActCommand = new RelayCommand(Act, CanAct);
+            CleanCommand = new RelayCommand(Clean, CanClean);
+            DeSerializeCommand = new RelayCommand(DeSerialize);
+            SerializeCommand = new RelayCommand(Serialize);
+            AddTaskCommand = new RelayCommand(AddTask, CanAddTask);
+            NewTaskCommand = new RelayCommand(NewTask, IsCurrentTaskListed);
+            RemoveTaskCommand = new RelayCommand(RemoveTask, IsCurrentTaskListed);
+        }
+
         private readonly JtttTaskService service = new JtttTaskService();
 
         private ObservableCollection<TaskViewModel> tasks;
-        private TaskViewModel currentTask;
-
         public ObservableCollection<TaskViewModel> Tasks
         {
             get
@@ -39,6 +48,7 @@ namespace JTTT.ViewModels
             }
         }
 
+        private TaskViewModel currentTask;
         public TaskViewModel CurrentTask
         {
             get => currentTask ?? (currentTask = new TaskViewModel());
@@ -56,18 +66,6 @@ namespace JTTT.ViewModels
         public ICommand AddTaskCommand { get; }
         public ICommand NewTaskCommand { get; }
         public ICommand RemoveTaskCommand { get; }
-
-
-        public MainViewModel()
-        {
-            ActCommand = new RelayCommand(Act, CanAct);
-            CleanCommand = new RelayCommand(Clean, CanClean);
-            DeSerializeCommand = new RelayCommand(DeSerialize);
-            SerializeCommand = new RelayCommand(Serialize);
-            AddTaskCommand = new RelayCommand(AddTask, CanAddTask);
-            NewTaskCommand = new RelayCommand(NewTask, IsCurrentTaskListed);
-            RemoveTaskCommand = new RelayCommand(RemoveTask, IsCurrentTaskListed);
-        }
 
         private void LoadTasks()
         {
@@ -107,18 +105,31 @@ namespace JTTT.ViewModels
 
         private void DeSerialize()
         {
-            var list = Serializer.ReadFromJsonFile<List<TaskViewModel>>();
-
-            foreach (var model in list)
-            {
-                Tasks.Add(model);
-            }
-            ActualizeTasksIds();
+            //            var list = Serializer.ReadFromJsonFile<List<TaskViewModel>>();
+            //
+            //            foreach (var model in list)
+            //            {
+            //                Tasks.Add(model);
+            //            }
+            //            ActualizeTasksIds();
         }
 
         private void Serialize()
         {
-            Serializer.WriteToJsonFile(Tasks);
+            var task = new TaskViewModel()
+            {
+                IfThisPage = new CheckWeatherViewModel()
+                {
+                    City = "Kalisz",
+                    Temperature = 10
+                },
+                ThenThatPage = new ShowOnScreenViewModel(),
+                Id = 5,
+                Title = "Ta dam"
+            };
+            Tasks.Add(task);
+            var dto = Mapper.Map<TaskDto>(task);
+            service.AddNewTask(dto);
         }
 
         private void AddTask()

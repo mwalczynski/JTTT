@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="JTTT.Views.IfThisViews.IsImageView"
+﻿<UserControl x:Class="JTTT.Views.IfThisViews.CheckWeatherView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:JTTT.Views.IfThisViews"
              mc:Ignorable="d" >
-
+ 
     <UserControl.Resources>
         <ResourceDictionary Source="/JTTT;component/Views/MyResources.xaml"/>
     </UserControl.Resources>
@@ -13,8 +13,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="375"/>
-            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,28 +25,28 @@
                Grid.Row="0"
                Grid.Column="0"
                Grid.ColumnSpan="2"
-               Content="na danej stronie znajduje się obrazek, który zawiera tekst:"
+               Content="temperatura w tym mieście jest wyższa niż wartosć:"
                Foreground="DarkGreen"
         />
         <Label Style="{StaticResource BoxLabel}"
                Grid.Row="1"
                Grid.Column="0"
-               Content="URL:"
+               Content="Miasto:"
         />
         <Label Style="{StaticResource BoxLabel}"
                Grid.Row="2"
                Grid.Column="0"
-               Content="Tekst:"
+               Content="Temp:"
         />
         <TextBox 
             Grid.Row="1"
             Grid.Column="1"
-            Text="{Binding Path=Url, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" 
+            Text="{Binding Path=City, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" 
         />
         <TextBox
             Grid.Row="2"
             Grid.Column="1"
-            Text="{Binding Path=Text, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" 
+            Text="{Binding Path=Temperature, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" 
         />
     </Grid>
 </UserControl>

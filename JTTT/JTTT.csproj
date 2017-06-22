@@ -96,6 +96,24 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -104,7 +122,9 @@
     </ApplicationDefinition>
     <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="DaoModels\JtttActionEmail.cs" />
+    <Compile Include="DaoModels\JtttActionShow.cs" />
     <Compile Include="DaoModels\JtttConditionImgAlt.cs" />
+    <Compile Include="DaoModels\JtttConditionWeather.cs" />
     <Compile Include="Dtos\ActionDto.cs" />
     <Compile Include="Dtos\ConditionDto.cs" />
     <Compile Include="Dtos\TaskDto.cs" />
@@ -123,6 +143,22 @@
     <Compile Include="Migrations\201706212043371_DeletedIsDeleted.Designer.cs">
       <DependentUpon>201706212043371_DeletedIsDeleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706220026072_NewTask.cs" />
+    <Compile Include="Migrations\201706220026072_NewTask.Designer.cs">
+      <DependentUpon>201706220026072_NewTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706220027386_NewTask2.cs" />
+    <Compile Include="Migrations\201706220027386_NewTask2.Designer.cs">
+      <DependentUpon>201706220027386_NewTask2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706220035456_WillShow.cs" />
+    <Compile Include="Migrations\201706220035456_WillShow.Designer.cs">
+      <DependentUpon>201706220035456_WillShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706220041464_DeletedWillShow.cs" />
+    <Compile Include="Migrations\201706220041464_DeletedWillShow.Designer.cs">
+      <DependentUpon>201706220041464_DeletedWillShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Repository\IRepository.cs" />
@@ -132,12 +168,17 @@
     <Compile Include="Services\JtttTaskService.cs" />
     <Compile Include="ViewModels\BaseViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModels\IfThisThenThatBaseViewModel.cs" />
+    <Compile Include="ViewModels\IfThisViewModels\CheckWeatherViewModel.cs" />
     <Compile Include="ViewModels\IfThisViewModels\IfThisViewModel.cs" />
     <Compile Include="ViewModels\IfThisViewModels\IsImageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\ThenThatViewModels\SendMailViewModel.cs" />
+    <Compile Include="ViewModels\ThenThatViewModels\ShowOnScreenViewModel.cs" />
     <Compile Include="ViewModels\ThenThatViewModels\ThenThatViewModel.cs" />
+    <Compile Include="Views\IfThisViews\CheckWeatherView.xaml.cs">
+      <DependentUpon>CheckWeatherView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\IfThisViews\IsImageView.xaml.cs">
       <DependentUpon>IsImageView.xaml</DependentUpon>
     </Compile>
@@ -149,6 +190,9 @@
     </Compile>
     <Compile Include="Views\ThenThatViews\SendMailView.xaml.cs">
       <DependentUpon>SendMailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThenThatViews\ShowOnScreenView.xaml.cs">
+      <DependentUpon>ShowOnScreenView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +206,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\IfThisViews\CheckWeatherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\IfThisViews\IsImageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +234,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ThenThatViews\ShowOnScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -206,6 +258,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706212043371_DeletedIsDeleted.resx">
       <DependentUpon>201706212043371_DeletedIsDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706220026072_NewTask.resx">
+      <DependentUpon>201706220026072_NewTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706220027386_NewTask2.resx">
+      <DependentUpon>201706220027386_NewTask2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706220035456_WillShow.resx">
+      <DependentUpon>201706220035456_WillShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706220041464_DeletedWillShow.resx">
+      <DependentUpon>201706220041464_DeletedWillShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
