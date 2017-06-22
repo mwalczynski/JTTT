@@ -1,8 +1,13 @@
 ﻿<Application x:Class="JTTT.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             xmlns:views="clr-namespace:JTTT.Views"
+             xmlns:viewModels="clr-namespace:JTTT.ViewModels"
+             StartupUri="MainWindow.xaml" >
+   
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type viewModels:ShowConditionViewModel}">
+            <views:ShowConditionView />
+        </DataTemplate>
     </Application.Resources>
 </Application>

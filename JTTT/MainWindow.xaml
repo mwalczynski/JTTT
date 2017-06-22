@@ -8,7 +8,7 @@
         Title="JTTT" 
         Height="555"
         Width="865">
-    
+
     <Grid
         Background="LightGray">
         <views:MainView/>

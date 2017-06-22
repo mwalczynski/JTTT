@@ -27,7 +27,8 @@ namespace JTTT.ViewModels.ThenThatViewModels
 
         public override void Act(DataCI data)
         {
-            var body = data.Images.Aggregate("", (current, image) => current + ("<img src=\"" + image + "\" /><br />"));
+            var body = data.Text + "<br />";
+            body += data.Images.Aggregate("", (current, image) => current + ("<img src=\"" + image + "\" /><br />"));
             MailSender.SendMail(data.Title, body, email);
         }
     }

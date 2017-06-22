@@ -7,7 +7,8 @@
                     xmlns:thenThatViews="clr-namespace:JTTT.Views.ThenThatViews" 
                     xmlns:viewModels="clr-namespace:JTTT.ViewModels" 
                     xmlns:views="clr-namespace:JTTT.Views" >
-
+    
+    
     <DataTemplate DataType="{x:Type ifThisViewModels:IsImageViewModel}">
         <ifThisViews:IsImageView />
     </DataTemplate>
@@ -23,13 +24,9 @@
     <DataTemplate DataType="{x:Type thenThatViewModels:ShowOnScreenViewModel}">
         <thenThatViews:ShowOnScreenView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type viewModels:TaskViewModel}">
         <views:TaskView />
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type viewModels:ShowConditionViewModel}">
-        <views:ShowConditionView />
     </DataTemplate>
 
 </ResourceDictionary>

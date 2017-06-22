@@ -124,7 +124,10 @@ namespace JTTT.ViewModels
         public void Act()
         {
             var data = IfThisPage.GetData();
-            thenThatPage.Act(data);
+            if (data.IsConditionFulfilled)
+            {
+                thenThatPage.Act(data);
+            }
         }
 
         public bool IsValid()

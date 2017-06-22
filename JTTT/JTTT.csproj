@@ -121,6 +121,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AutoMapperConfiguration.cs" />
+    <Compile Include="BrowserBehavior.cs" />
     <Compile Include="DaoModels\JtttActionEmail.cs" />
     <Compile Include="DaoModels\JtttActionShow.cs" />
     <Compile Include="DaoModels\JtttConditionImgAlt.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Serializer.cs" />
     <Compile Include="Services\JtttTaskService.cs" />
+    <Compile Include="TemperatureConverter.cs" />
     <Compile Include="ViewModels\BaseViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModels\IfThisThenThatBaseViewModel.cs" />
     <Compile Include="ViewModels\IfThisViewModels\CheckWeatherViewModel.cs" />
@@ -198,6 +200,7 @@
     <Compile Include="Views\ThenThatViews\ShowOnScreenView.xaml.cs">
       <DependentUpon>ShowOnScreenView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WeatherPOCO.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

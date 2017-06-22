@@ -39,9 +39,20 @@ namespace JTTT.ViewModels.IfThisViewModels
 
         public override DataCI GetData()
         {
+            var data = new DataCI("Znalezione obrazki");
+
             var nodes = HtmlSearcher.SearchNodes(text, url);
-            var images = FindAllNodes(nodes);
-            var data = new DataCI("Znalezione obrazki", images);
+            if (!nodes.Any())
+            {
+                data.IsConditionFulfilled = false;
+            }
+            else
+            {
+                var images = FindAllNodes(nodes);
+                data.Images = images;
+                data.Text = $"Znaleziono obrazków: {images.Count}";
+                data.IsConditionFulfilled = true;
+            }
             return data;
         }
 

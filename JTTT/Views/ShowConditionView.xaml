@@ -4,10 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JTTT.Views"
+        xmlns:jttt="clr-namespace:JTTT"
         mc:Ignorable="d"
         Title="{Binding Title}"
-        Height="300" Width="300">
+        Height="600" Width="655">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               HorizontalContentAlignment="Left"
+               VerticalContentAlignment="Center"
+               FontSize="20"
+               FontStyle="Italic"
+               Content="{Binding Text}"/>
+
+        <WebBrowser Grid.Row="1" jttt:BrowserBehavior.Html="{Binding HtmlContent}"/>
     </Grid>
 </Window>
+ 
